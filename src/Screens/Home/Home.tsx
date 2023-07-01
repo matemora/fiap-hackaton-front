@@ -6,7 +6,7 @@ import {
   Typography,
   Box,
 } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import CardView from "../../Components/CardView";
 import { IMovie } from "../../Interfaces/IMovies";
 import useAPI from "../../Services/APIs/Common/useAPI";
@@ -22,7 +22,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const getPersonAPI = useAPI(Movies.getMovies);
 
-  const getData = () => {
+  const getData = useCallback(() => {
     setIsLoading(true);
     getPersonAPI
       .requestPromise(searchText)
@@ -34,7 +34,7 @@ const Home = () => {
       .catch((info: any) => {
         console.log(info);
       });
-  };
+  }, [getPersonAPI, searchText]);
 
   useEffect(() => {
     getData()
