@@ -22,10 +22,6 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const getPersonAPI = useAPI(Movies.getMovies);
 
-  useEffect(() => {
-    getData()
-  }, [getData]);
-
   const getData = () => {
     setIsLoading(true);
     getPersonAPI
@@ -39,6 +35,10 @@ const Home = () => {
         console.log(info);
       });
   };
+
+  useEffect(() => {
+    getData()
+  }, [getData]);
 
   const onChangeSearch = (
     event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
