@@ -6,7 +6,7 @@ name: s3-depl
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ main ]
+    branches: [main]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -25,6 +25,10 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
+          no-cache: true
+          delete-removed: true
+          dist-id: ${{ secrets.AWS_DISTRIBUTION_ID }}
+          invalidation: / *
       - name: Build React App
         run: npm install && npm run build
       - name: Deploy app build to S3 bucket
