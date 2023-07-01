@@ -38,7 +38,8 @@ const Home = () => {
 
   useEffect(() => {
     getData()
-  }, [getData]);
+    /* eslint-disable-next-line */
+  }, []);
 
   const onChangeSearch = (
     event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
